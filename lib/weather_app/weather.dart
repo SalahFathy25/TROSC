@@ -14,7 +14,7 @@ class Weather extends StatelessWidget {
             colors: [
               Color.fromARGB(255, 217, 230, 41),
               Color.fromARGB(255, 93, 44, 133),
-              Colors.black,
+              Colors.black87,
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
