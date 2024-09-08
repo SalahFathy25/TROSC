@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:trosc/weather_app/weather.dart';
+import 'package:trosc/weather_app/weather_screen.dart';
 
 import 'Day 9/cubit/password_cubit.dart';
 import 'monster_livescore_app/screens/Welcome_Pages/third_welcome_page.dart';
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         },
         debugShowCheckedModeBanner: false,
         home: const Scaffold(
-          body: Weather(),
+          body: WeatherScreen(),
         ),
       ),
     );
