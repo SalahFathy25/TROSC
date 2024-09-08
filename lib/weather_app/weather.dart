@@ -63,8 +63,8 @@ class Weather extends StatelessWidget {
               const SizedBox(height: 30),
               Image.asset(
                 'assets/images/weather_app/sunny.png',
-                width: 200,
-                height: 200,
+                width: 230,
+                height: 230,
               ),
               const SizedBox(height: 20),
               const Text(
@@ -222,7 +222,7 @@ class Weather extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 40),
             ],
           ),
         ),
