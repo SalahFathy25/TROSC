@@ -35,12 +35,8 @@ class WeatherScreen extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Icon(
-                            Icons.location_on_sharp,
-                            color: Colors.red,
-                          ),
                           Text(
-                            ': EG',
+                            '📍 : EG',
                             style: TextStyle(
                               fontSize: 24,
                               color: Colors.white,
