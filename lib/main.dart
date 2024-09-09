@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trosc/splash_screen.dart';
-import 'package:trosc/weather_app/screens/weather_screen.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'Day 9/cubit/password_cubit.dart';
