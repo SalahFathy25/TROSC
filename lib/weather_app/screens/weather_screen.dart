@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:trosc/weather_app/widgets/my_item.dart';
+import 'package:trosc/weather_app/widgets/my_sized_box.dart';
 
 class WeatherScreen extends StatelessWidget {
   const WeatherScreen({super.key});
@@ -6,14 +9,21 @@ class WeatherScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        systemOverlayStyle:
+            const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
+      ),
       body: Container(
-        width: double.infinity,
-        height: double.infinity,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 217, 230, 41),
-              Color.fromARGB(255, 93, 44, 133),
+              Color(0xffFFAB40),
+              Colors.deepPurple,
               Colors.black87,
             ],
             begin: Alignment.topCenter,
@@ -26,7 +36,7 @@ class WeatherScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 30),
+              mySizedBox(height: 30),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -56,13 +66,13 @@ class WeatherScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 30),
+              mySizedBox(height: 30),
               Image.asset(
                 'assets/images/weather_app/sunny.png',
                 width: 230,
                 height: 230,
               ),
-              const SizedBox(height: 20),
+              mySizedBox(height: 20),
               const Text(
                 '28 °C',
                 style: TextStyle(
@@ -78,7 +88,7 @@ class WeatherScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              const SizedBox(height: 20),
+              mySizedBox(height: 20),
               const Text(
                 'Thursday 08 • 8:44 PM',
                 style: TextStyle(
@@ -86,139 +96,39 @@ class WeatherScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              const SizedBox(height: 30),
+              mySizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/weather_app/sunrise.png',
-                        width: 45,
-                        height: 45,
-                      ),
-                      const SizedBox(width: 10),
-                      const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Sunrise',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                            ),
-                          ),
-                          Text(
-                            '5:13 AM',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                  MyItem(
+                    image: 'assets/images/weather_app/sunrise.png',
+                    label: 'Sunrise',
+                    value: '5:13 AM',
                   ),
-                  Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/weather_app/sunset.png',
-                        width: 45,
-                        height: 45,
-                      ),
-                      const SizedBox(width: 10),
-                      const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Sunset',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                            ),
-                          ),
-                          Text(
-                            '6:39 PM',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                  MyItem(
+                    image: 'assets/images/weather_app/sunset.png',
+                    label: 'Sunset',
+                    value: '6:39 PM',
+                  )
                 ],
               ),
               const Divider(height: 30, endIndent: 10, indent: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/weather_app/max_temp.png',
-                        width: 45,
-                        height: 45,
-                      ),
-                      const SizedBox(width: 10),
-                      const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Temp Max',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                            ),
-                          ),
-                          Text(
-                            '28 °C',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                  MyItem(
+                    image: 'assets/images/weather_app/max_temp.png',
+                    label: 'Temp Max',
+                    value: '28 °C',
                   ),
-                  Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/weather_app/min_temp.png',
-                        width: 45,
-                        height: 45,
-                      ),
-                      const SizedBox(width: 10),
-                      const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Temp Min',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                            ),
-                          ),
-                          Text(
-                            '28 °C',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                  MyItem(
+                    image: 'assets/images/weather_app/min_temp.png',
+                    label: 'Temp Min',
+                    value: '28 °C',
                   ),
                 ],
               ),
-              const SizedBox(height: 40),
+              mySizedBox(height: 40),
             ],
           ),
         ),
