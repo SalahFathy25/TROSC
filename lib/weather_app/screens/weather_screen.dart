@@ -74,7 +74,7 @@ class WeatherScreen extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  '📍 ${state.weather.country ?? ''}',
+                                  '📍: ${state.weather.country ?? ''}',
                                   style: const TextStyle(
                                     fontSize: 24,
                                     color: Colors.white,
