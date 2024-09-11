@@ -1,12 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:trosc/weather_app/bloc/weather_bloc.dart';
+import 'package:trosc/weather_app/data/get_weather_icon.dart';
 import 'package:trosc/weather_app/widgets/my_item.dart';
 import 'package:trosc/weather_app/widgets/my_sized_box.dart';
 
 class WeatherScreen extends StatelessWidget {
   const WeatherScreen({super.key});
+
+  String formatDateTime(String inputDateTime) {
+    try {
+      DateTime dateTime = DateTime.parse(inputDateTime);
+      String dayOfWeek = DateFormat('EEEE').format(dateTime);
+      String day = DateFormat('d').format(dateTime);
+      String time = DateFormat('h:mm a').format(dateTime);
+      return '$dayOfWeek $day • $time';
+    } catch (e) {
+      return 'Invalid date';
+    }
+  }
+
+  String formatRiseAndSet(String dateTimeStr) {
+    try {
+      DateTime dateTime = DateTime.parse(dateTimeStr);
+      return DateFormat.jm().format(dateTime);
+    } catch (e) {
+      return 'Invalid time';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +74,7 @@ class WeatherScreen extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  '📍 ${state.weather.country}',
+                                  '📍 ${state.weather.country ?? ''}',
                                   style: const TextStyle(
                                     fontSize: 24,
                                     color: Colors.white,
@@ -60,7 +83,7 @@ class WeatherScreen extends StatelessWidget {
                               ],
                             ),
                             Text(
-                              '${state.weather.areaName}',
+                              state.weather.areaName ?? '',
                               style: const TextStyle(
                                 fontSize: 32,
                                 color: Colors.white,
@@ -72,14 +95,10 @@ class WeatherScreen extends StatelessWidget {
                       ],
                     ),
                     mySizedBox(height: 30),
-                    Image.asset(
-                      '${state.weather.weatherIcon}',
-                      width: 230,
-                      height: 230,
-                    ),
+                    GetWeatherIcon(code: state.weather.weatherConditionCode!),
                     mySizedBox(height: 20),
                     Text(
-                      '${state.weather.temperature!.celsius?.round()} °C',
+                      '${state.weather.temperature?.celsius?.round() ?? '--'} °C',
                       style: const TextStyle(
                         fontSize: 60,
                         color: Colors.white,
@@ -87,7 +106,7 @@ class WeatherScreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '${state.weather.weatherMain}',
+                      state.weather.weatherMain ?? '',
                       style: const TextStyle(
                         fontSize: 32,
                         color: Colors.white,
@@ -95,7 +114,7 @@ class WeatherScreen extends StatelessWidget {
                     ),
                     mySizedBox(height: 20),
                     Text(
-                      '${state.weather.date}',
+                      formatDateTime('${state.weather.date}'),
                       style: const TextStyle(
                         fontSize: 20,
                         color: Colors.white,
@@ -108,12 +127,12 @@ class WeatherScreen extends StatelessWidget {
                         MyItem(
                           image: 'assets/images/weather_app/sunrise.png',
                           label: 'Sunrise',
-                          value: '${state.weather.sunrise}',
+                          value: formatRiseAndSet('${state.weather.sunrise}'),
                         ),
                         MyItem(
                           image: 'assets/images/weather_app/sunset.png',
                           label: 'Sunset',
-                          value: '${state.weather.sunset}',
+                          value: formatRiseAndSet('${state.weather.sunset}'),
                         ),
                       ],
                     ),
@@ -125,13 +144,13 @@ class WeatherScreen extends StatelessWidget {
                           image: 'assets/images/weather_app/max_temp.png',
                           label: 'Temp Max',
                           value:
-                              '${state.weather.tempMax!.celsius?.round()} °C',
+                              '${state.weather.tempMax?.celsius?.round() ?? '--'} °C',
                         ),
                         MyItem(
                           image: 'assets/images/weather_app/min_temp.png',
                           label: 'Temp Min',
                           value:
-                              '${state.weather.tempMin!.celsius?.round()} °C',
+                              '${state.weather.tempMin?.celsius?.round() ?? '--'} °C',
                         ),
                       ],
                     ),

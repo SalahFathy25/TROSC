@@ -15,3 +15,5 @@ class FetchWeather extends WeatherEvent {
   @override
   List<Object> get props => [position];
 }
+
+
