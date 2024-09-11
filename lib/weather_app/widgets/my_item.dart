@@ -19,6 +19,7 @@ Widget MyItem(
             style: const TextStyle(
               color: Colors.white,
               fontSize: 17,
+              fontWeight: FontWeight.w500,
             ),
           ),
           Text(

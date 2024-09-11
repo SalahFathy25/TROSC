@@ -110,6 +110,7 @@ class WeatherScreen extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 32,
                         color: Colors.white,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     mySizedBox(height: 20),
@@ -118,6 +119,7 @@ class WeatherScreen extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 20,
                         color: Colors.white,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     mySizedBox(height: 30),
